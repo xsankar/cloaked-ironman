@@ -140,7 +140,7 @@ df_test_1$Survived <- pred
 head(df_test_1)
 #
 out <- df_test_1 %>% select(PassengerId,Survived)
-write.csv(out,"titanic-r/r-sub-05.csv",row.names = FALSE)
+write.csv(out,file="titanic-r/r-sub-05.csv",row.names = FALSE)
 #
 # Submit & it should give 0.77033, not higher
 #
@@ -161,7 +161,7 @@ df_test_1$Survived <- pred
 head(df_test_1)
 #
 out <- df_test_1 %>% select(PassengerId,Survived)
-write.csv(out,"titanic-r/r-sub-06.csv",row.names = FALSE)
+write.csv(out,file="titanic-r/r-sub-06.csv",row.names = FALSE)
 #
 # Submit & it should give 0.63158, much lower
 #
