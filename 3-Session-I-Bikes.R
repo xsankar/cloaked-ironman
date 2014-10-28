@@ -70,4 +70,36 @@ pred <- predict(fit.ctree, test)
 test$count <- pred
 out <- test %>% select(datetime,count)
 write.csv(out, file="bike/sub-01.csv",row.names = FALSE)
+#
+# Submit & it should give 0.51343, rank : 451
+#
+# Add Year & Month
+train$year <- as.factor(year(ymd_hms(train$datefull)))
+train$month <- as.factor(month(ymd_hms(train$datefull)))
+#
+test$year <- as.factor(year(ymd_hms(test$datefull)))
+test$month <- as.factor(month(ymd_hms(test$datefull)))
+#
+formula <- count ~ season + holiday + workingday + weather + temp + atemp + humidity + windspeed + hour + wday + year + month
+fit.ctree <- ctree(formula, data=train)
+#
+pred <- predict(fit.ctree, test)
+test$count <- pred
+out <- test %>% select(datetime,count)
+write.csv(out, file="bike/sub-02.csv",row.names = FALSE)
+#
+# Submit & it should give 0.52667, didn't improve
+#
+library(randomForest)
+mdl_rf <- randomForest(formula, data = train,importance = TRUE)
+mdl_rf
+importance(mdl_rf)
+#
+pred <- predict(mdl_rf,newdata = test)
+test$count <- pred
+out <- test %>% select(datetime,count)
+write.csv(out, file="bike/sub-03.csv",row.names = FALSE)
+#
+# Submit & it should give 0.63424, didn't improve
+#
 

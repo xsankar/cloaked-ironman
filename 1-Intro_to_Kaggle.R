@@ -8,6 +8,7 @@ gc(TRUE)
 gcinfo(FALSE)
 #
 library(dplyr)
+sessionInfo()
 df_train = read.csv('titanic-r/train.csv')
 df_test = read.csv('titanic-r/test.csv')
 #
